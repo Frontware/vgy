@@ -1,7 +1,11 @@
+![vgy](https://vgy.me/static/img/public/logo/navbar.png)
 # vgy
 
-![vgy](https://vgy.me/static/img/public/logo/navbar.png)
 Simple Post image to vgy.me
+
+## Important
+
+We are not affilated to vgy.me
 
 ## vgy API doc
 
