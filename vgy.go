@@ -38,8 +38,7 @@ var UserKey string
 // urlUpload based vgy.me API url
 const urlUpload = "https://vgy.me/upload"
 
-// UploadImageFile uploads an image (.png, .jpg) to vgy.me
-func UploadImageFile(fileName string) (response Response, err error) {
+func getRequest(fileName string) (req *http.Request, err error) {
 	// Prepare a form that you will submit to that URL.
 	var b bytes.Buffer
 	w := multipart.NewWriter(&b)
@@ -64,11 +63,20 @@ func UploadImageFile(fileName string) (response Response, err error) {
 	w.Close()
 
 	// Now that you have a form, you can submit it to your handler.
-	req, _ := http.NewRequest("POST", urlUpload, &b)
+	req, _ = http.NewRequest("POST", urlUpload, &b)
 
 	// Don't forget to set the content type, this will contain the boundary.
 	req.Header.Set("Content-Type", w.FormDataContentType())
+	return
+}
 
+// UploadImageFile uploads an image (.png, .jpg) to vgy.me
+func UploadImageFile(fileName string) (response Response, err error) {
+
+	req, err := getRequest(fileName)
+	if err != nil {
+		return
+	}
 	// Submit the request
 	client := &http.Client{}
 	res, err := client.Do(req)
@@ -79,13 +87,12 @@ func UploadImageFile(fileName string) (response Response, err error) {
 	// Check the response
 	if res.StatusCode != http.StatusOK {
 		err = fmt.Errorf("bad status: %s", res.Status)
-
-	} else {
-		defer res.Body.Close()
-		if respBody, err := ioutil.ReadAll(res.Body); err == nil {
-			if err = json.Unmarshal(respBody, &response); err == nil && response.Error {
-				err = errors.New("error")
-			}
+		return
+	}
+	defer res.Body.Close()
+	if respBody, err := ioutil.ReadAll(res.Body); err == nil {
+		if err = json.Unmarshal(respBody, &response); err == nil && response.Error {
+			err = errors.New("error")
 		}
 	}
 	return
