@@ -10,7 +10,7 @@ API doc is here https://vgy.me/api
 
 ```golang
 
-import "github.com/frontware.com/vgy"
+import "github.com/Frontware/vgy"
 import "fmt"
 
 func main () {
