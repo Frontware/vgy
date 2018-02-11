@@ -17,11 +17,11 @@ import (
 // ffjson: noencoder
 type Response struct {
 	Error     bool
-	URL       string
+	URL       string // direct URL of the image
 	Image     string
 	Extension string
-	Filesize  int64
-	Delete    string
+	Filesize  int64  // File size in bytes
+	DeleteURL string `json:"delete"` // URL to delete the image from vgy.me hosting
 }
 
 // Print returns string formated Response
