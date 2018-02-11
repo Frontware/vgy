@@ -32,7 +32,8 @@ func (r Response) Print() string {
 	return result
 }
 
-// UserKey must be defined at https://vgy.me/account/details
+// UserKey must be created at https://vgy.me/account/details
+// It's not mandatory. But if you don't set it you won't get the uploaded image attached to your vgy.me account
 var UserKey string
 
 const urlUpload = "https://vgy.me/upload"
@@ -97,7 +98,5 @@ func UploadImageFile(fileName string) (response Response, err error) {
 	if response.Error {
 		err = errors.New("error")
 	}
-
 	return
-
 }
