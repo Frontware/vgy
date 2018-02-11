@@ -6,6 +6,10 @@ Simple Post image to vgy.me
 
 API doc is here https://vgy.me/api
 
+## Doc
+
+Doc online is on [godoc](https://godoc.org/github.com/Frontware/vgy)
+
 ## Usage
 
 ```golang
