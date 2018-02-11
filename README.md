@@ -13,8 +13,7 @@ API doc is here https://vgy.me/api
 
 [![MIT Licence](https://badges.frapsoft.com/os/mit/mit.svg?v=103)](https://opensource.org/licenses/mit-license.php)
 
-![](https://img.shields.io/badge/style-plastic-green.svg?style=plastic)
-![](https://img.shields.io/badge/Developed%20by-Frontware-yellowgreen.svg)
+[![Frontware](https://img.shields.io/badge/Developed%20by-Frontware-yellowgreen.svg)](https://www.frontware.com)
 
 ## Doc
 
