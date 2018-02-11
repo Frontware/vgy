@@ -38,6 +38,7 @@ var UserKey string
 // urlUpload based vgy.me API url
 const urlUpload = "https://vgy.me/upload"
 
+// getRequest returns http request
 func getRequest(fileName string) (req *http.Request, err error) {
 	// Prepare a form that you will submit to that URL.
 	var b bytes.Buffer
