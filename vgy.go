@@ -49,10 +49,8 @@ func UploadImageFile(fileName string) (response Response, err error) {
 		return
 	}
 	defer f.Close()
-	fw, err := w.CreateFormFile("file", fileName)
-	if err != nil {
-		return
-	}
+	fw, _ := w.CreateFormFile("file", fileName)
+
 	if _, err = io.Copy(fw, f); err != nil {
 		return
 	}
@@ -66,10 +64,8 @@ func UploadImageFile(fileName string) (response Response, err error) {
 	w.Close()
 
 	// Now that you have a form, you can submit it to your handler.
-	req, err := http.NewRequest("POST", urlUpload, &b)
-	if err != nil {
-		return
-	}
+	req, _ := http.NewRequest("POST", urlUpload, &b)
+
 	// Don't forget to set the content type, this will contain the boundary.
 	req.Header.Set("Content-Type", w.FormDataContentType())
 
@@ -86,7 +82,7 @@ func UploadImageFile(fileName string) (response Response, err error) {
 	}
 	defer res.Body.Close()
 	if respBody, err := ioutil.ReadAll(res.Body); err == nil {
-		if err = json.Unmarshal(respBody, &response); response.Error {
+		if err = json.Unmarshal(respBody, &response); err == nil && response.Error {
 			err = errors.New("error")
 		}
 	}
