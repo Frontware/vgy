@@ -79,12 +79,13 @@ func UploadImageFile(fileName string) (response Response, err error) {
 	// Check the response
 	if res.StatusCode != http.StatusOK {
 		err = fmt.Errorf("bad status: %s", res.Status)
-		return
-	}
-	defer res.Body.Close()
-	if respBody, err := ioutil.ReadAll(res.Body); err == nil {
-		if err = json.Unmarshal(respBody, &response); err == nil && response.Error {
-			err = errors.New("error")
+
+	} else {
+		defer res.Body.Close()
+		if respBody, err := ioutil.ReadAll(res.Body); err == nil {
+			if err = json.Unmarshal(respBody, &response); err == nil && response.Error {
+				err = errors.New("error")
+			}
 		}
 	}
 	return
