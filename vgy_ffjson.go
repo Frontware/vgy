@@ -7,6 +7,7 @@ import (
 	"bytes"
 	"errors"
 	"fmt"
+
 	fflib "github.com/pquerna/ffjson/fflib/v1"
 )
 
@@ -393,7 +394,7 @@ handle_Delete:
 
 			outBuf := fs.Output.Bytes()
 
-			j.Delete = string(string(outBuf))
+			j.DeleteURL = string(string(outBuf))
 
 		}
 	}
