@@ -58,12 +58,8 @@ func UploadImageFile(fileName string) (response Response, err error) {
 	}
 	// Add User Key if provided
 	if UserKey != "" {
-		if fw, err = w.CreateFormField("userkey"); err != nil {
-			return
-		}
-		if _, err = fw.Write([]byte(UserKey)); err != nil {
-			return
-		}
+		w.CreateFormField("userkey")
+		fw.Write([]byte(UserKey))
 	}
 	// Don't forget to close the multipart writer.
 	// If you don't close it, your request will be missing the terminating boundary.
@@ -89,14 +85,10 @@ func UploadImageFile(fileName string) (response Response, err error) {
 		err = fmt.Errorf("bad status: %s", res.Status)
 	}
 	defer res.Body.Close()
-	respBody, err := ioutil.ReadAll(res.Body)
-	if err != nil {
-		return
-	}
-
-	err = json.Unmarshal(respBody, &response)
-	if response.Error {
-		err = errors.New("error")
+	if respBody, err := ioutil.ReadAll(res.Body); err == nil {
+		if err = json.Unmarshal(respBody, &response); response.Error {
+			err = errors.New("error")
+		}
 	}
 	return
 }
