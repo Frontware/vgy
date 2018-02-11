@@ -13,7 +13,6 @@ import (
 )
 
 // Response returned information from vgy.me after posting an image
-
 type Response struct {
 	Error     bool
 	URL       string // direct URL of the image
@@ -36,6 +35,7 @@ func (r Response) Print() string {
 // It's not mandatory. But if you don't set it you won't get the uploaded image attached to your vgy.me account
 var UserKey string
 
+// urlUpload based vgy.me API url
 const urlUpload = "https://vgy.me/upload"
 
 // UploadImageFile uploads an image (.png, .jpg) to vgy.me
@@ -79,6 +79,7 @@ func UploadImageFile(fileName string) (response Response, err error) {
 	// Check the response
 	if res.StatusCode != http.StatusOK {
 		err = fmt.Errorf("bad status: %s", res.Status)
+		return
 	}
 	defer res.Body.Close()
 	if respBody, err := ioutil.ReadAll(res.Body); err == nil {
