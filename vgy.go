@@ -27,6 +27,7 @@ type Response struct {
 // Print returns string formated Response
 func (r Response) Print() string {
 	result := "URL: " + r.URL + "\n"
+	result += "Delete URL: " + r.DeleteURL + "\n"
 	result += "Image: " + r.Image + "." + r.Extension + "\n"
 	result += fmt.Sprintf("Filesize: %d", r.Filesize)
 	return result
@@ -56,8 +57,8 @@ func UploadImageFile(fileName string) (response Response, err error) {
 	if _, err = io.Copy(fw, f); err != nil {
 		return
 	}
+	// Add User Key if provided
 	if UserKey != "" {
-		// Add the other fields
 		if fw, err = w.CreateFormField("userkey"); err != nil {
 			return
 		}
