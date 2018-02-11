@@ -1,15 +1,15 @@
 ![vgy](https://vgy.me/static/img/public/logo/navbar.png)
 # vgy
 
-Simple Post image to vgy.me
+Simple Post image file to vgy.me
 
 ## Important
 
-We are not affilated to vgy.me
+We are not affiliated to vgy.me
 
 ## vgy API doc
 
-API doc is here https://vgy.me/api
+VGY.ME API doc is [here](https://vgy.me/api)
 
 [![MIT Licence](https://badges.frapsoft.com/os/mit/mit.svg?v=103)](https://opensource.org/licenses/mit-license.php)
 
