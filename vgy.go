@@ -2,6 +2,7 @@ package vgy
 
 import (
 	"bytes"
+	"encoding/json"
 	"errors"
 	"fmt"
 	"io"
@@ -11,10 +12,8 @@ import (
 	"os"
 )
 
-//go:generate ffjson $GOFILE
-
 // Response returned information from vgy.me after posting an image
-// ffjson: noencoder
+
 type Response struct {
 	Error     bool
 	URL       string // direct URL of the image
@@ -95,7 +94,7 @@ func UploadImageFile(fileName string) (response Response, err error) {
 		return
 	}
 
-	err = response.UnmarshalJSON(respBody)
+	err = json.Unmarshal(respBody, &response)
 	if response.Error {
 		err = errors.New("error")
 	}

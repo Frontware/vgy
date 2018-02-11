@@ -15,6 +15,8 @@ VGY.ME API doc is [here](https://vgy.me/api)
 
 [![Frontware](https://img.shields.io/badge/Developed%20by-Frontware-yellowgreen.svg)](https://www.frontware.com)
 
+[![Maintainability](https://api.codeclimate.com/v1/badges/df35f73cc687147e9215/maintainability)](https://codeclimate.com/github/Frontware/vgy/maintainability)
+
 ## Doc
 
 Doc online is on [godoc](https://godoc.org/github.com/Frontware/vgy)
