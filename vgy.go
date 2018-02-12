@@ -14,12 +14,13 @@ import (
 
 // Response returned information from vgy.me after posting an image
 type Response struct {
-	Error     bool
-	URL       string // direct URL of the image
-	Image     string
-	Extension string
-	Filesize  int64  // File size in bytes
-	DeleteURL string `json:"delete"` // URL to delete the image from vgy.me hosting
+	Error      bool
+	URL        string // direct URL of the image
+	Image      string
+	Extension  string
+	Filesize   int64    // File size in bytes
+	DeleteURL  string   `json:"delete"`      // URL to delete the image from vgy.me hosting
+	UploadList []string `json:"upload_list"` // List of URL when upload several images
 }
 
 // Print returns string formated Response
